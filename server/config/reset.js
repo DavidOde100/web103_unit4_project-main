@@ -11,8 +11,10 @@ export const resetDatabase = async () => {
         make VARCHAR(100) NOT NULL,
         model VARCHAR(100) NOT NULL,
         exterior VARCHAR(100) NOT NULL,
+        roof VARCHAR(100) DEFAULT 'Fixed Roof',
         wheels VARCHAR(100) NOT NULL,
         interior VARCHAR(100) NOT NULL,
+        convertible BOOLEAN DEFAULT false,
         price INTEGER NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
@@ -24,7 +26,7 @@ export const resetDatabase = async () => {
     const count = Number(rows[0].count)
     if (count === 0) {
       const sample = [
-        { name: 'Night Runner', make: 'Corvette', model: 'C8', exterior: 'Midnight Silver', wheels: '22" Performance', interior: 'Black Leather', price: 65000 },
+        { name: 'Night Runner', make: 'Corvette', model: 'C8', exterior: 'Midnight Silver', roof: 'Fixed Roof', wheels: '22" Performance', interior: 'Black Leather', convertible: false, price: 65000 },
         { name: 'Sun Chaser', make: 'Porsche', model: '911', exterior: 'Pearl White', wheels: '20" Sport', interior: 'Tan Premium', price: 120000 },
         { name: 'Blue Flash', make: 'Nissan', model: 'GTR', exterior: 'Electric Blue', wheels: '22" Performance', interior: 'Carbon Sport', price: 98000 },
         { name: 'City Cruiser', make: 'Mini', model: 'Cooper S', exterior: 'Midnight Silver', wheels: '18" Aero', interior: 'Black Leather', price: 32000 },
@@ -48,9 +50,9 @@ export const resetDatabase = async () => {
 
       for (const item of sample) {
         await client.query(
-          `INSERT INTO custom_items (name, make, model, exterior, wheels, interior, price)
-           VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-          [item.name, item.make, item.model, item.exterior, item.wheels, item.interior, item.price]
+          `INSERT INTO custom_items (name, make, model, exterior, roof, wheels, interior, convertible, price)
+           VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+          [item.name, item.make, item.model, item.exterior, item.roof || 'Fixed Roof', item.wheels, item.interior, item.convertible || false, item.price]
         )
       }
 
@@ -59,20 +61,20 @@ export const resetDatabase = async () => {
     // Append 20 additional sample records (unique names) to ensure more examples
     const extra = 20
     const pool = [
-      { name: 'Extra Flash', make: 'Lotus', model: 'Evora', exterior: 'Midnight Silver', wheels: '20" Sport', interior: 'Black Leather', price: 95000 },
-      { name: 'Sunset', make: 'Alfa Romeo', model: 'Giulia', exterior: 'Pearl White', wheels: '20" Sport', interior: 'Tan Premium', price: 68000 },
-      { name: 'Apex', make: 'Kia', model: 'Stinger', exterior: 'Electric Blue', wheels: '20" Sport', interior: 'Black Leather', price: 45000 },
-      { name: 'Swift', make: 'Hyundai', model: 'Veloster', exterior: 'Midnight Silver', wheels: '18" Aero', interior: 'Black Leather', price: 28000 },
-      { name: 'Glide', make: 'Volkswagen', model: 'Golf R', exterior: 'Pearl White', wheels: '20" Sport', interior: 'Tan Premium', price: 43000 }
+      { name: 'Extra Flash', make: 'Lotus', model: 'Evora', exterior: 'Midnight Silver', roof: 'Fixed Roof', wheels: '20" Sport', interior: 'Black Leather', convertible: false, price: 95000 },
+      { name: 'Sunset', make: 'Alfa Romeo', model: 'Giulia', exterior: 'Pearl White', roof: 'Fixed Roof', wheels: '20" Sport', interior: 'Tan Premium', convertible: false, price: 68000 },
+      { name: 'Apex', make: 'Kia', model: 'Stinger', exterior: 'Electric Blue', roof: 'Fixed Roof', wheels: '20" Sport', interior: 'Black Leather', convertible: false, price: 45000 },
+      { name: 'Swift', make: 'Hyundai', model: 'Veloster', exterior: 'Midnight Silver', roof: 'Fixed Roof', wheels: '18" Aero', interior: 'Black Leather', convertible: false, price: 28000 },
+      { name: 'Glide', make: 'Volkswagen', model: 'Golf R', exterior: 'Pearl White', roof: 'Fixed Roof', wheels: '20" Sport', interior: 'Tan Premium', convertible: false, price: 43000 }
     ]
 
     for (let i = 0; i < extra; i++) {
       const base = pool[i % pool.length]
       const uniqueName = `${base.name} ${Date.now() % 100000}-${i}`
       await client.query(
-        `INSERT INTO custom_items (name, make, model, exterior, wheels, interior, price)
-         VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-        [uniqueName, base.make, base.model, base.exterior, base.wheels, base.interior, base.price]
+        `INSERT INTO custom_items (name, make, model, exterior, roof, wheels, interior, convertible, price)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+        [uniqueName, base.make, base.model, base.exterior, base.roof || 'Fixed Roof', base.wheels, base.interior, base.convertible || false, base.price]
       )
     }
     console.log(`Inserted ${extra} extra sample items`)

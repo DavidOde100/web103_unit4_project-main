@@ -58,17 +58,58 @@ export const wheelStyles = {
   '22" Star': 'radial-gradient(circle at 50% 40%, #fcd34d, #b45309)'
 }
 
+import wheelSport from '../assets/wheels/sport.svg'
+import wheelClassic from '../assets/wheels/classic.svg'
+import wheelStar from '../assets/wheels/star.svg'
+
+import interiorAlcantara from '../assets/interiors/alcantara.svg'
+import interiorWood from '../assets/interiors/wood.svg'
+import interiorWhite from '../assets/interiors/white.svg'
+
+export const wheelSvgs = {
+  '18" Aero': wheelSport,
+  '19" Classic': wheelClassic,
+  '20" Sport': wheelSport,
+  '21" Turbine': wheelStar,
+  '22" Performance': wheelSport,
+  '22" Star': wheelStar
+}
+
+export const interiorThumbnails = {
+  'Black Leather': interiorAlcantara,
+  'Tan Premium': interiorWood,
+  'Carbon Sport': interiorAlcantara,
+  'White Vegan': interiorWhite,
+  'Sport Alcantara': interiorAlcantara,
+  'Luxury Wood': interiorWood
+}
+
+export const roofOptions = [
+  { label: 'Fixed Roof', price: 0 },
+  { label: 'Glass Panoramic', price: 900 },
+  { label: 'Removable Targa', price: 1800 }
+]
+
+export const roofStyles = {
+  'Fixed Roof': 'rgba(0,0,0,0.18)',
+  'Glass Panoramic': 'linear-gradient(180deg, rgba(255,255,255,0.18), rgba(0,0,0,0.12))',
+  'Removable Targa': 'linear-gradient(90deg, rgba(0,0,0,0.22), rgba(0,0,0,0.08))'
+}
+
 export const getOptionPrice = (options, label) => {
   const option = options.find((entry) => entry.label === label)
   return option ? option.price : 0
 }
 
-export const calculateCarPrice = ({ exterior, wheels, interior }) => {
+export const calculateCarPrice = ({ exterior, wheels, interior, roof }) => {
   const exteriorPrice = getOptionPrice(exteriorOptions, exterior)
   const wheelPrice = getOptionPrice(wheelOptions, wheels)
   const interiorPrice = getOptionPrice(interiorOptions, interior)
 
-  return basePrice + exteriorPrice + wheelPrice + interiorPrice
+  // roof may be optional in earlier calls; include if provided
+  const roofPrice = getOptionPrice(roofOptions, roof)
+
+  return basePrice + exteriorPrice + wheelPrice + interiorPrice + roofPrice
 }
 
 export const getCarPreviewStyle = ({ exterior, interior }) => ({

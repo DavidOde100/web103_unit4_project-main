@@ -5,3 +5,39 @@ nav {
     padding-right: 50px;
     padding-top: 20px;
 }
+
+.site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.8);
+    padding: 18px 48px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+.site-nav .nav-left h1 {
+    margin: 0;
+    color: white;
+    font-size: 2.4rem;
+}
+
+.nav-actions .btn {
+    display: inline-block;
+    padding: 10px 16px;
+    margin-left: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.06);
+}
+
+.nav-actions .btn.primary {
+    background: #7b0f12;
+    color: white;
+    border: 2px solid rgba(0,0,0,0.2);
+}
+
+.nav-actions .btn:hover { opacity: 0.95 }

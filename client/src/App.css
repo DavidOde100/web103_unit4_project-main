@@ -10,3 +10,63 @@
     overflow-x: hidden;
     padding-bottom: 50px;
 }
+
+.hero {
+    width: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px 40px;
+    box-sizing: border-box;
+}
+
+.price-badge {
+    background: #7b0f12;
+    color: white;
+    padding: 14px 22px;
+    font-weight: 700;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    font-size: 1.4rem;
+}
+
+.cards-grid {
+    display: grid;
+    gap: 28px;
+    padding: 32px 40px;
+}
+
+.car-card {
+    background: rgba(0,0,0,0.7);
+    padding: 20px 28px;
+    border-radius: 6px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.car-card h3 { margin: 0 0 8px 0 }
+
+.car-card .details { flex: 1; }
+
+.car-card .actions { text-align: right; margin-left: 20px }
+
+.car-card .price { font-weight: 800; color: #fde68a }
+
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.45);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn.secondary { background: rgba(255,255,255,0.06); color: white }
+
+.car-preview { max-width: 420px; margin: 12px auto 0; padding: 12px; box-sizing: border-box }
+.car-body { height: 120px; border-radius: 12px; box-shadow: 0 12px 30px rgba(2,6,23,0.6); margin-bottom: 6px }
+.car-wheels { display: flex; justify-content: space-between; gap: 24px; padding: 0 36px; margin-top: -18px }
+.wheel { width: 56px; height: 56px; border-radius: 50%; box-shadow: 0 6px 14px rgba(0,0,0,0.6); border: 4px solid rgba(0,0,0,0.35) }
+.interior-panel { width: 70%; height: 36px; margin: 10px auto 0; border-radius: 8px; box-shadow: inset 0 -6px 16px rgba(0,0,0,0.25) }

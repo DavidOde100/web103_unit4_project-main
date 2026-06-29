@@ -4,16 +4,17 @@ import '../css/Navigation.css'
 
 const Navigation = () => {
     return (
-        <nav>
-            <ul>
-                <li><h1>Bolt Bucket 🏎️</h1></li>
-            </ul>
+        <nav className='site-nav'>
+            <div className='nav-left'>
+                <h1>DriveCraft <span className='emoji'>🚗</span></h1>
+            </div>
 
-            <ul>
-                <li><a href='/' role='button'>Customize</a></li>
-                <li><a href='/customcars' role='button'>View Cars</a></li>
-            </ul>
-            
+            <div className='nav-right'>
+                <div className='nav-actions'>
+                    <a href='/' className='btn primary'>CUSTOMIZE</a>
+                    <a href='/customcars' className='btn'>VIEW CARS</a>
+                </div>
+            </div>
         </nav>
     )
 }

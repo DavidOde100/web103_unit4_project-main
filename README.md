@@ -2,7 +2,7 @@
 
 Submitted by: **David Odejimi**
 
-About this web app: **App description here**
+About this web app: **DriveCraft is a full-stack custom car configurator where users can build and save personalized cars by selecting options like exterior color, roof style, wheels, and interior. The app provides a live visual preview with 3D-inspired styling, dynamically updates total price based on selected features, prevents invalid feature combinations, and supports full CRUD actions (create, view, edit, and delete) for saved builds using a React frontend, Express API, and PostgreSQL database.**
 
 Time spent: **2.5** hours
 
@@ -51,7 +51,7 @@ GIF created with ...  GIF tool here
 
 ## Notes
 
-Describe any challenges encountered while building the app or any additional context you'd like to add.
+One of the biggest challenges was keeping the frontend state, pricing logic, and backend validation consistent while users changed options quickly in the customizer. I also had to debug several UI/UX issues, including selection timing behavior, layout clipping on the View Cars page, and making the car preview look more realistic without breaking responsiveness. On the backend side, configuring PostgreSQL connectivity and keeping CRUD flows stable across create/edit/detail/list pages required careful testing. A key takeaway from this project was the importance of validating both data rules and visual behavior together, especially in interactive configurator-style apps.
 
 ## License
 
